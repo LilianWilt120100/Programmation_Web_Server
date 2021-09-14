@@ -1,22 +1,29 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>Signin</title>
-	</head>
-	<body>
-		<h1>Signin</h1>
-        <?php
+<?php
+$message = isset($_SESSION['message']) && $_SESSION['message'] !== '' ? $_SESSION['message'] : '';
 
-        $meth = $_SERVER['REQUEST_METHOD'];
-        if($meth=='GET') {
-            echo '<form action = "authenticate.php" >
-                    <p > Votre identifiant : <input type = "text" name = "identifiant" ></p >
-                    <p > Votre mot de passe : <input type = "password" name = "mdp" ></p >
-			        <input type = "submit" value = "Connect " >
-		          </form >'
-            ;
-		}
-		?>
-	</body>
-</html>
+if ($_SERVER['REQUEST_METHOD'] === 'GET')
+    session_start();
+
+echo "<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset='utf-8'>
+	<title>Signin</title>
+</head>
+
+<body>
+	<h1>Signin</h1>
+		<div class='message'>$message</div>
+	<br />
+	<form action='authenticate.php' method='post'>
+		<input name='login' type='text' placeholder='Login' />
+		<input name='password' type='password' placeholder='Password' />
+		<br />
+		<br />
+		<input type='submit' value='Connect me' />
+	</form>
+</body>
+
+</html>"
+?>

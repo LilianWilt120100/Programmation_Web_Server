@@ -6,6 +6,12 @@
     // renvoi vers le formulaire de connexion
 
 	// sinon, on affiche la page de bienvenue
+
+
+if ($_SERVER['REQUEST_METHOD'] !== 'GET' || !isset($_SESSION['username']))
+    header('Location: signin.php');
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -15,8 +21,9 @@
     </head>
     <body>
         <p>
-			Hello UTILISATEUR !<br>
+			Hello <?php echo $_SESSION['username'] ?> !<br>
 			Welcome on your account.
 		</p>
+        <a href='signout.php'>Déconnexion</a>
     </body>
 </html>
