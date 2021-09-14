@@ -17,7 +17,7 @@ if (isset($_POST['login']) && isset($_POST['password']) && isset($_POST['confirm
 
     if($password === $confirmedpassword){
         $stmt = $db->prepare('INSERT INTO users(login, password) VALUES (?,?)');
-        $stmt -> execute([$login, $password]);
+        $stmt -> execute([$login, password_hash($password, PASSWORD_DEFAULT)]);
         header('Location: signin.php');
     }else{
         header('Location: signup.php');
