@@ -25,5 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] !== 'GET' || !isset($_SESSION['username']))
 			Welcome on your account.
 		</p>
         <a href='signout.php'>Déconnexion</a>
+        <a href='formpassword.php'>Click here to change your password</a>
+        <a href='deleteuser.php'>Click here to delete your profile</a>
+
+
     </body>
 </html>

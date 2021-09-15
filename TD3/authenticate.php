@@ -16,13 +16,13 @@ $db = new PDO("mysql:host=localhost;dbname=" . DB_NAME, DB_USER, DB_PASS);
             $login = htmlentities($_POST['login']);
             $password = htmlentities($_POST['password']);
 
-            $stmt = $db->prepare('select login from users where login = ? AND password = ?');
-            $stmt->execute([$login, $password]);
+            $stmt = $db->prepare('select login, password from users where login = ?');
+            $stmt->execute([$login]);
             foreach ($stmt as $row) {
                 $user = $row;
             }
 
-            if ($user) {
+            if ($user && password_verify($password, $user['password'])) {
                 $_SESSION['username'] = $login;
                 header('Location: welcome.php');
             } else {
